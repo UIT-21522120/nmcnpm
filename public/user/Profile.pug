@@ -1,0 +1,109 @@
+extends ../header.pug
+
+block title
+  title #{user.HoTen} - #{role_encode}
+
+block append css
+  link(rel='stylesheet' href='/public/source/fonts/fontawesome-free-6.2.0-web/css/all.css')
+  link(rel='stylesheet' href='/public/source/css/view-student.css')
+
+block append script
+  script(src='https://kit.fontawesome.com/7b85820244.js' crossorigin='anonymous')
+
+block content        
+  section.home-section
+    .home-content
+      i.fa-solid.fa-bars
+  .page-wrapper
+    .content
+      .student-form-view
+        .card
+          .card-table
+            .card-body
+              div
+                .row
+                  .page-header-student-title
+                    h5.page-title Hồ sơ #{role_encode}
+                  .student-profile-head
+                    .profile-bg-img
+                      img(src='/public/source/img/R.jpg' alt='profile')
+                    .row
+                      .profile-name
+                        .profile-user
+                          .profile-user-img
+                            img(src='/public/source/img/avt.jpg' alt='profile user')
+                          .user-name
+                            h4 #{user.HoTen}
+                  .row-user
+                    .student-detail
+                      .student-detail-personal
+                        .card-user
+                          .card-body-user
+                            .heading-detail
+                              h4 Thông tin:
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-user
+                              .view-personal
+                                h4 Họ Tên
+                                h5 #{user.HoTen}
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-building
+                              .view-personal
+                                h4 Lớp
+                                  each Lop in DanhSachLop
+                                    h5 #{Lop.TenLop}
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-user
+                              .view-personal
+                                h4 Giới Tính
+                                h5 #{user.GioiTinh}
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-calendar-days
+                              .view-personal
+                                h4 Ngày Sinh
+                                - var date = new Date(user.NgSinh);
+                                - date = date.toLocaleDateString('vi-VN');
+
+                                h5 #{date} 
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-phone
+                              .view-personal
+                                h4 Số Điện Thoại
+                                h5 +84478125369
+                            .personal-activity
+                              .personal-icon
+                                i.fa-solid.fa-envelope
+                              .view-personal
+                                h4 Email
+                                h5 #{user.Email}
+                            .personal-activity
+                              .personal-icon
+                                i.fa-sharp.fa-solid.fa-location-dot
+                              .view-personal
+                                h4 Địa Chỉ
+                                h5 #{user.DiaChi}
+                    .user-about
+                      .user-about-personal
+                        .card-user
+                          .card-body-user
+                            //- .heading-detail
+                            //-   h4 Về em
+                            .user-paragraph
+                              h5 Xin chào, mình là #{user.HoTen}
+                              p
+                                | Xin chào mọi người! Tôi là #{user.HoTen}, một học sinh của Trường THPT ABC. Gia đình của tôi gồm ba người, một gia đình nhỏ hạnh phúc. Bố mình là một kỹ sư xây dựng, người đã đóng góp không ít vào công trình kiến trúc đặc biệt của chúng tôi, tựa ngôi nhà mà chúng tôi hiện đang sinh sống. Mẹ tôi là một giáo viên tiểu học, người đã truyền cảm hứng và tri thức cho hàng trăm học sinh nhỏ trong suốt những năm qua. Trong gia đình, mỗi người đều có những sở thích và đam mê riêng. Bố tôi đam mê công việc của mình, với khả năng sáng tạo và kiến thức chuyên môn trong lĩnh vực xây dựng. Mẹ tôi yêu thích việc giảng dạy và truyền đạt kiến thức cho thế hệ trẻ, giúp họ phát triển tư duy và kỹ năng sống. Còn riêng tôi, tôi có sở thích cá nhân là màu sắc đỏ và trắng. Màu đỏ thể hiện sự nhiệt huyết và đam mê của tôi, trong khi màu trắng mang ý nghĩa sự trong sáng và tinh khiết. Môn học yêu thích của tôi là Ngữ Văn, với những câu chuyện đầy hấp dẫn và những bài học sâu sắc về con người và cuộc sống. Tôi cũng rất hứng thú với các môn khoa học, bởi chúng mở ra một thế giới mới, nơi tôi có thể khám phá và tìm hiểu về sự phát triển và sinh sôi của cuộc sống. Đó là một chút về bản thân và gia đình tôi. Tôi rất tự hào được là một học sinh của Trường THPT ABC, nơi chúng tôi có một môi trường học tập tuyệt vời và được hỗ trợ từ gia đình và thầy cô. Tôi xin chân thành cảm ơn mọi người đã lắng nghe!
+                            .user-paragraph
+                              h5 Học Vấn
+                              .educate-year
+                                h6 2009 - 2012
+                                p Trường Mầm Non Tuổi Hồng. Đạt danh hiệu bé ngoan trong thời gian học tập tại trường
+                                h6 2012 - 2017
+                                p Trường Tiểu Học X. Năm năm liền học sinh giỏi và nhiều giải thưởng Violympic 
+                                h6 2018 - 2021
+                                p Trường Trung học cơ sở Y. Tất cả các năm theo học tại trường đều đạt danh hiệu học sinh giỏi. Là đội tuyển đại diện thi học sinh giỏi của trường.
+  script(src='/public/source/js/main.js')

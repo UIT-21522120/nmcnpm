@@ -1,0 +1,371 @@
+/* GLOBAL */
+*{
+    box-sizing: border-box;
+}
+
+html,body{
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    padding-top: 50px;
+}
+
+.clear{
+    clear: both;
+}
+
+h2{
+    font-size: 25px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top:25px ;
+    margin-bottom: 0px;
+}
+
+.line{
+    background-image: url(/public/source/img/line.jpg);
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 33%;
+    margin-bottom: 25px;
+    margin-left: 2px;
+}
+
+/* HEADER */
+
+.header {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    z-index: 99;
+}
+
+
+.header__logoImg{
+    /* float: left; */
+    width: 10%;
+    margin-left: 1%;
+}
+
+.header__slogan{
+    /* float: right; */
+    /* margin-right: 40px; */
+    
+    
+}
+
+.header__slogan button {
+    padding: 0.25em 0.75em;
+    border-radius: 0.5em;
+}
+
+.header__logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em;
+}
+
+.header__slogan button{
+    font-size: 20px;
+    /* border-radius: 25px; */
+    border: 2px solid #028090;
+    background-color: white;
+    /* margin-top: 35px; */
+}
+
+.header__slogan a{
+    text-decoration: none;
+    color: #028090;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.header__slogan button:hover{
+    background-color: #028090;
+    
+}
+.header__slogan button:hover a{
+    color: white;
+}
+
+.header__navbar ul{
+    list-style: none;
+    border-top: 1px solid #044e4e;
+    border-bottom: 1px solid #044e4e;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+}
+
+
+
+.header__navbar ul img{
+    width: 100px;
+}
+
+.header__navbar ul li{
+    display: inline;   
+    
+}
+.header__navbar ul li input{
+    width: 453px;
+    margin-left: 100px;
+}
+
+.header__navbar ul a{
+    text-decoration: none;
+    font-weight: bold;
+    /* vw,vh */
+    font-size: 1.13vw;
+    /* 1 em = 1.13vw */
+    /* font-size: 16px; 
+    1 em = 16px;
+    */    
+    padding: 0 0.3em;
+
+    color: #636363;
+    text-transform: uppercase;
+    
+}
+
+.header__navbar ul li:hover {
+    border-bottom: 2px solid #028090;
+}
+
+.header__navbar ul .active{
+    border-bottom: 2px solid #028090;
+}
+
+/* CAROUSEL */
+.carousel{
+    background-image: url(https://1.bp.blogspot.com/-aGZAKywj0NU/YH2bEj_n-dI/AAAAAAAAD-E/Af_XSpBisLUG58YzuujrPVTNiF2KAWtrQCLcBGAsYHQ/s1269/%255Bquangcaoyenbai.com%255D%2BThanh%2BThien%2BKy%2BNiem%2B90%2Bnam.jpg);
+    height: 600px;
+    background-size: cover;
+    background-position: bottom;
+    margin-top: 20px;
+}
+
+/* INTRO */
+.intro p{
+    text-align: center;
+    color: #636363;
+    line-height: 25px;
+    padding: 0 200px;
+}
+
+
+/* services */
+.services{
+    background-image: url(../img/s1.jpg);
+    background-size: cover;
+    text-align: center;
+    /* padding: 70px 0; */
+}
+/* .services h2{
+    color: white;
+    
+} */
+.services__content{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+}
+.services__item{
+    padding: 0 20px;
+}
+.services__item i{
+    width: 105px;
+    height: 105px;
+    border: 1px solid #4e2a84;
+    border-radius: 50%;
+    background-color: white;
+    color: #028090;
+    font-size: 3.75rem;
+    line-height: 105px;
+    transition: all 0.5s;
+}
+.services__item h3{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 17px 0;
+    padding: 0 35px;
+}
+.services__item p{
+    font-size: 0.875rem;
+    line-height: 25px;
+    padding-bottom:12px ;
+}
+.services__item button{
+    border-width: 2px;
+}
+.services__item:hover i{
+    color: #ff0e83;
+   
+}
+
+/* PROGRAMS */
+
+.programs__item{
+    float: left;
+    width: 25%;
+    padding:0 10px;
+}
+
+.programs__item img{
+    width: 100%;
+}
+
+.programs__item h3{
+    color: #028090;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 10px 0 5px;
+}
+
+.programs__item p{
+    color: #636363;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* NEWS */
+.news{
+    margin-bottom:20px ;
+}
+/* .news__left, .news__right{
+    float: left;
+    width: 50%;
+    padding: 0 5px;
+} */
+
+.news__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-row: 2;
+    gap: 0.8em;
+}
+
+.one {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+}
+
+.two {
+    grid-column: 3 / 4;
+}
+
+.news__text img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.news__text{
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+}
+.news__text p{
+    position: absolute;
+    bottom:0px;
+    left: 0;
+    color: white;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 15px 10px;
+    margin: 0;
+    text-align: justify;
+}
+
+.news__left .news__text p{
+    font-size: 24px;
+}
+
+.news__small-item{
+    /* float: left; */
+    /* width: 47%; */
+    /* padding: 7px 7px 2px 9px; */
+}
+
+.news__text hr{
+    margin: 0;
+    height: 5px;
+    background-color: #028090;
+    margin-top: 3px;
+}
+
+/* CONTACT */
+
+.page-contact {
+    margin: 100px 80px;
+  }
+  .contact-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* color: #636363; */
+    letter-spacing: 2px;
+    margin-top: -75px;
+  }
+  .contact-main {
+    margin-top: 50px;
+    display: grid;
+  }
+  .main-content-contact {
+    padding: 30px;
+  }
+  .main-content-contact a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+  }
+  .main-content-contact img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid #028090;
+  }
+  .main-content-contact span.user-name {
+    color: #028090;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 15px;
+  }
+  .contact-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .purpose-body {
+    box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 30%);
+    border-radius: 20px !important;
+    flex: 1;
+    max-width: 100%;
+  }
+
+
+/* FOOTER */
+.footer{
+    background-color: #028090;
+    color: white;
+    padding: 20px 50px;
+    text-align: center;
+}
+/* .footer img{
+    float: left;
+}
+.footer p{
+    float: right;
+    width: 50%;
+    word-spacing: 2px;
+    text-align: justify;
+} */
