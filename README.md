@@ -1,5 +1,5 @@
 # SE104.N25.CLC - Nhóm 8
-#### []*Phần mềm: Quản lý học sinh
+#### *Phần mềm: Quản lý học sinh
 
 
 ## Giới thiệu
