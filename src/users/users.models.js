@@ -518,7 +518,7 @@ async function DanhSachDiem(MaMH, MaLop, HocKy, Nam2) {
                 SELECT HOCSINH.MaHS, HoTen, KQHM.MaLHKT, KQHM.Diem, KQHM.DiemTBMon, LOP.MaLop, TenLop FROM (
                     SELECT MaHS, MaLHKT, Diem, DiemTBMon
                     FROM dbo.KETQUAHOCMON INNER JOIN dbo.CT_HOCMON ON CT_HOCMON.MaQTHoc = KETQUAHOCMON.MaQTHoc
-                    WHERE MaMH = '${MaMH}' AND KETQUAHOCMON.MaHocKy = 'HK00${HocKy}'
+                    WHERE MaMH = '${MaMH}' AND KETQUAHOCMON.MaHocKy = 'HK0${HocKy}'
                     ) KQHM RIGHT JOIN dbo.HOCSINH ON HOCSINH.MaHS = KQHM.MaHS INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = HOCSINH.MaHS INNER JOIN dbo.LOP ON LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaLop = LOP.MaLop
                 WHERE MaMH = '${MaMH}' AND LOP.MaLop = '${MaLop}'`
             let result = await TruyVan("Admin", SQLQuery);
@@ -755,36 +755,36 @@ async function BaoCaoMonHoc(Role, data) {
     try {
         let result;
         if (Role == "GiaoVien") {
-            // let SQLQuery = `DECLARE @DiemDatMon FLOAT;
-            // SELECT @DiemDatMon = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
-            // SELECT DISTINCT LOP.MaHocKy, TenLop, KETQUAHOCMON.MaMH, COUNT(DISTINCT DiemTBMon) AS SoLuongDat, SiSo
-            // FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH AND LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop INNER JOIN LOP ON LOP.MaHocKy = KETQUAHOCMON.MaHocKy AND LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = LOP.MaHocKy AND HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy
-            // WHERE DiemTBMon IS NOT NULL AND SiSo IS NOT NULL AND DiemTBMon >= @DiemDatMon AND MaGV = '${data.MaGV}' AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK00${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
-            // GROUP BY KETQUAHOCMON.MaMH, LOP.MaHocKy, HOCSINH_LOP.MaLop, TenLop, SiSo
-            // `;
+            let SQLQuery = `DECLARE @DiemDatMon FLOAT;
+            SELECT @DiemDatMon = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
+            SELECT DISTINCT LOP.MaHocKy, TenLop, KETQUAHOCMON.MaMH, COUNT(DISTINCT DiemTBMon) AS SoLuongDat, SiSo
+            FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH AND LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop INNER JOIN LOP ON LOP.MaHocKy = KETQUAHOCMON.MaHocKy AND LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = LOP.MaHocKy AND HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy
+            WHERE DiemTBMon IS NOT NULL AND SiSo IS NOT NULL AND DiemTBMon >= @DiemDatMon AND MaGV = '${data.MaGV}' AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            GROUP BY KETQUAHOCMON.MaMH, LOP.MaHocKy, HOCSINH_LOP.MaLop, TenLop, SiSo
+            `;
 
-            let SQLQuery= `SELECT LOP.MaHocKy, TenLop, dbo.LOP_MONHOC.MaMH, SoLuongDat, SiSo 
-			FROM dbo.BAOCAOMONHOC,dbo.LOP_MONHOC,dbo.LOP,dbo.HOCKY
-			WHERE dbo.BAOCAOMONHOC.MaMH=dbo.LOP_MONHOC.MaMH AND dbo.LOP.MaLop=dbo.LOP_MONHOC.MaLop AND dbo.BAOCAOMONHOC.MaHocKy=dbo.HOCKY.MaHocKy
-            AND MaGV = '${data.MaGV}' AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
-            `
+            // let SQLQuery= `SELECT LOP.MaHocKy, TenLop, dbo.LOP_MONHOC.MaMH, SoLuongDat, SiSo 
+			// FROM dbo.BAOCAOMONHOC,dbo.LOP_MONHOC,dbo.LOP,dbo.HOCKY
+			// WHERE dbo.BAOCAOMONHOC.MaMH=dbo.LOP_MONHOC.MaMH AND dbo.LOP.MaLop=dbo.LOP_MONHOC.MaLop AND dbo.BAOCAOMONHOC.MaHocKy=dbo.HOCKY.MaHocKy
+            // AND MaGV = '${data.MaGV}' AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            // `
             console.log(SQLQuery)
             result = await TruyVan("Admin", SQLQuery);
             console.log("Báo cáo môn học", result);
             return result;
         } else {
-            // let SQLQuery = `DECLARE @DiemDatMon FLOAT;
-            // SELECT @DiemDatMon = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
-            // SELECT DISTINCT LOP.MaHocKy, TenLop, KETQUAHOCMON.MaMH, COUNT(DISTINCT DiemTBMon) AS SoLuongDat, SiSo
-            // FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH AND LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop INNER JOIN LOP ON LOP.MaHocKy = KETQUAHOCMON.MaHocKy AND LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = LOP.MaHocKy AND HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy
-            // WHERE DiemTBMon IS NOT NULL AND SiSo IS NOT NULL AND DiemTBMon >= @DiemDatMon AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK00${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
-            // GROUP BY KETQUAHOCMON.MaMH, LOP.MaHocKy, HOCSINH_LOP.MaLop, TenLop, SiSo
-            // `;
-            let SQLQuery= `SELECT DISTINCT LOP.MaHocKy, TenLop, dbo.LOP_MONHOC.MaMH, SoLuongDat, SiSo 
-			FROM dbo.BAOCAOMONHOC,dbo.LOP_MONHOC,dbo.LOP,dbo.HOCKY
-			WHERE dbo.BAOCAOMONHOC.MaMH=dbo.LOP_MONHOC.MaMH AND dbo.LOP.MaLop=dbo.LOP_MONHOC.MaLop AND dbo.BAOCAOMONHOC.MaHocKy=dbo.HOCKY.MaHocKy
-            AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
-            `
+            let SQLQuery = `DECLARE @DiemDatMon FLOAT;
+            SELECT @DiemDatMon = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
+            SELECT DISTINCT LOP.MaHocKy, TenLop, KETQUAHOCMON.MaMH, COUNT(DISTINCT DiemTBMon) AS SoLuongDat, SiSo
+            FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH AND LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop INNER JOIN LOP ON LOP.MaHocKy = KETQUAHOCMON.MaHocKy AND LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = LOP.MaHocKy AND HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy
+            WHERE DiemTBMon IS NOT NULL AND SiSo IS NOT NULL AND DiemTBMon >= @DiemDatMon AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            GROUP BY KETQUAHOCMON.MaMH, LOP.MaHocKy, HOCSINH_LOP.MaLop, TenLop, SiSo
+            `;
+            // let SQLQuery= `SELECT DISTINCT LOP.MaHocKy, TenLop, dbo.LOP_MONHOC.MaMH, SoLuongDat, SiSo 
+			// FROM dbo.BAOCAOMONHOC,dbo.LOP_MONHOC,dbo.LOP,dbo.HOCKY
+			// WHERE dbo.BAOCAOMONHOC.MaMH=dbo.LOP_MONHOC.MaMH AND dbo.LOP.MaLop=dbo.LOP_MONHOC.MaLop AND dbo.BAOCAOMONHOC.MaHocKy=dbo.HOCKY.MaHocKy
+            // AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            // `
             console.log("SQLQuery", SQLQuery)
             result = await TruyVan("Admin", SQLQuery);
             console.log("Báo cáo môn học", result);
@@ -803,15 +803,22 @@ async function BaoCaoMonHoc(Role, data) {
 async function BaoCaoHocKy(Role, data) {
     try {
         let result;
-        // if (Role == "GiaoVien") {
-            // let variable_name;
-            // if(data.HocKy == 1)
-            //     variable_name = "DiemTBHK";
-            // else
-            //     variable_name = "DiemTBHK2";
+        if (Role == "GiaoVien") {
+            let variable_name;
+            if(data.HocKy == 1)
+                variable_name = "DiemTBHK";
+            else
+                variable_name = "DiemTBHK2";
+
+                let SQLQuery = `  DECLARE @DiemDatMon FLOAT;
+            SELECT @DiemDatMon = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
+            SELECT DISTINCT LOP.MaHocKy, TenLop, COUNT(DISTINCT DiemTBMon) AS SoLuongDat, SiSo
+            FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH AND LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop INNER JOIN LOP ON LOP.MaHocKy = KETQUAHOCMON.MaHocKy AND LOP.MaLop = HOCSINH_LOP.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = LOP.MaHocKy AND HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy
+            WHERE DiemTBMon IS NOT NULL AND SiSo IS NOT NULL AND DiemTBMon >= @DiemDatMon AND MaGV = '${data.MaGV}' AND LOP_MONHOC.MaMH = '${data.MaMH}' AND LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            GROUP BY KETQUAHOCMON.MaMH, LOP.MaHocKy, HOCSINH_LOP.MaLop, TenLop, SiSo`
 
             // let SQLQuery = `DECLARE @DiemDat FLOAT;
-            // SELECT @DiemDat = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDat';
+            // SELECT @DiemDat = GiaTri FROM dbo.THAMSO WHERE TenThamSo = 'DiemDatMon';
             // SELECT DISTINCT LOP.MaHocKy, TenLop, COUNT(DISTINCT DiemTBHK)AS SoLuongDat, SiSo
             // FROM dbo.KETQUAHOCMON INNER JOIN dbo.HOCSINH_LOP ON HOCSINH_LOP.MaHS = KETQUAHOCMON.MaHS INNER JOIN dbo.LOP_MONHOC ON LOP_MONHOC.MaLop = HOCSINH_LOP.MaLop AND LOP_MONHOC.MaMH = KETQUAHOCMON.MaMH INNER JOIN dbo.LOP ON LOP.MaLop = HOCSINH_LOP.MaLop AND LOP.MaLop = LOP_MONHOC.MaLop AND LOP.MaHocKy = KETQUAHOCMON.MaHocKy INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = KETQUAHOCMON.MaHocKy AND HOCKY.MaHocKy = LOP.MaHocKy
             // WHERE DiemTBHK IS NOT NULL AND LOP.MaHocKy = 'HK0${data.HocKy}' AND ${variable_name} > @DiemDat AND MaNam = 'NH${data.NamHoc}'
@@ -819,24 +826,26 @@ async function BaoCaoHocKy(Role, data) {
             // `;
 
             
-			let SQLQuery = `SELECT DISTINCT LOP.MaHocKy, TenLop,SoLuongDat, SiSo
-			FROM dbo.BAOCAOHOCKY,dbo.LOP,dbo.HOCKY
-			WHERE dbo.BAOCAOHOCKY.MaLop=dbo.LOP.MaLop AND dbo.HOCKY.MaHocKy=dbo.LOP.MaHocKy AND HocKy.MaHocKy=dbo.BAOCAOHOCKY.MaHocKy
-            and LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'`
+			// let SQLQuery = `SELECT DISTINCT LOP.MaHocKy, TenLop,SoLuongDat, SiSo
+			// FROM dbo.BAOCAOHOCKY,dbo.LOP,dbo.HOCKY
+			// WHERE dbo.BAOCAOHOCKY.MaLop=dbo.LOP.MaLop AND dbo.HOCKY.MaHocKy=dbo.LOP.MaHocKy AND HocKy.MaHocKy=dbo.BAOCAOHOCKY.MaHocKy
+            // and LOP.MaHocKy='HK0${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'`
             console.log(SQLQuery)
             result = await TruyVan("Admin", SQLQuery);
             console.log("Báo cáo học kỳ", result);
             return result;
-        // } else {
-        //     let SQLQuery = `SELECT TenLop, SiSo, SoLuongDat, TiLe
-        //     FROM dbo.BAOCAOHOCKY INNER JOIN LOP ON LOP.MaHocKy = BAOCAOHOCKY.MaHocKy AND LOP.MaLop = BAOCAOHOCKY.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = BAOCAOHOCKY.MaHocKy AND HOCKY.MaHocKy = LOP.MaHocKy
-        //     WHERE HocKy = '${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
-        //     `;
-        //     console.log("SQLQuery", SQLQuery)
-        //     result = await TruyVan("Admin", SQLQuery);
-        //     console.log("Báo cáo học kỳ", result);
-        //     return result;
-        // }
+        } else {
+
+            console.log("zoday");
+            let SQLQuery = `SELECT TenLop, SiSo, SoLuongDat, TiLe
+            FROM dbo.BAOCAOHOCKY INNER JOIN LOP ON LOP.MaHocKy = BAOCAOHOCKY.MaHocKy AND LOP.MaLop = BAOCAOHOCKY.MaLop INNER JOIN dbo.HOCKY ON HOCKY.MaHocKy = BAOCAOHOCKY.MaHocKy AND HOCKY.MaHocKy = LOP.MaHocKy
+            WHERE HocKy = '${data.HocKy}' AND MaNam = 'NH${data.NamHoc}'
+            `;
+            console.log("SQLQuery", SQLQuery)
+            result = await TruyVan("Admin", SQLQuery);
+            console.log("Báo cáo học kỳ", result);
+            return result;
+        }
     } catch (err) {
         console.log(err);
         return ({
@@ -912,7 +921,6 @@ async function XemDanhSachLopHocSinh(MaHS) {
         });
     }
 }
-
 exports.DanhSachHocSinhTheoMaHS = DanhSachHocSinhTheoMaHS;
 exports.DanhSachDiem = DanhSachDiem;
 exports.DanhSachMHDoGVDay = DanhSachMHDoGVDay;

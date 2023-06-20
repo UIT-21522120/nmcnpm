@@ -548,6 +548,23 @@ async function DanhSachMonHocTrongLopTheoMaLop(MaLop) {
         });
     }
 }
+async function XoaHocSinhKhoiLopCu(MaHS) {
+    try {
+        let SQLQuery = `delete from HOCSINH_LOP where MaHS = N'${MaHS}'`;
+        let result = await TruyVan("Admin", SQLQuery);
+        // let SQLQuery_XT = delete from XacThuc where MaND = N'${MaHS}';
+        // let result_XT = await TruyVan("Admin", SQLQuery_XT);
+        console.log("Xóa học sinh", result);
+        return result;
+    } catch(err) {
+        console.log(err);
+        return ({ 
+            statusCode: 400,
+            message: 'Lỗi truy vấn SQL!',
+            alert: 'Kiểm tra lại câu lệnh SQL!'
+        });
+    }
+}
 
 async function ThemMonHocVaoLop(MaLop, MaMH) {
     try {
@@ -564,8 +581,7 @@ async function ThemMonHocVaoLop(MaLop, MaMH) {
         });
     }
 }
-
-
+exports.XoaHocSinhKhoiLopCu = XoaHocSinhKhoiLopCu;
 exports.XemQuyDinh = XemQuyDinh;
 exports.ThayDoiQuyDinh = ThayDoiQuyDinh;
 exports.ThemVaiTro = ThemVaiTro;

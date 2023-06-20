@@ -768,7 +768,15 @@ async function DanhSachHocSinhTrongLopTheoMaLop(req, res) {
                 result: DanhSachLop.result
             });
         }
-
+        for (let i = 0; i < req.body.DanhSachHocSinh.length; i++) {
+            result = await adminModel.XoaHocSinhKhoiLopCu(req.body.DanhSachHocSinh[i]);
+            if (result.statusCode !== 200)
+            return res.json({
+                statusCode: 400,
+                message: 'Xóa học sinh khỏi lớp không thành công',
+                error: result.error,
+            });
+        }
         for(let i = 0; i < req.body.DanhSachHocSinh.length; i++) {
             let result = await adminModel.ThemHocSinhVaoLop(req.body.DanhSachHocSinh[i], req.body.MaLop);
             if (result.statusCode !== 200) 
