@@ -182,8 +182,11 @@ async function ThemHocSinhVaoLop(MaHS, MaLop) {
 
 async function ThemGiaoVienVaoLop(MaGV, MaLop, MaMH) {
     try {
+        console.log("dazoday");
         let SQLQuery = `insert into LOP_MONHOC (MaLop, MaMH, MaGV) values ('${MaLop}', '${MaMH}','${MaGV}' )`;
         let result = await TruyVan("Admin", SQLQuery);
+        
+        console.log(result);
         return result;
     } catch(err) {
         console.log(err);
@@ -548,7 +551,7 @@ async function DanhSachMonHocTrongLopTheoMaLop(MaLop) {
 
 async function ThemMonHocVaoLop(MaLop, MaMH) {
     try {
-        let SQLQuery = `insert into LOP_MONHOC (MaLop, MaMH) values ('${MaLop}', '${MaMH}')`;
+        let SQLQuery = `insert into LOP_MONHOC (MaLop, MaMH,MaGV) values ('${MaLop}', '${MaMH}', 'GV09')`;
         let result = await TruyVan("Admin", SQLQuery);
         console.log("Thêm môn học vào lớp", result);
         return result;

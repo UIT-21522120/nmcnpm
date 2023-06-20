@@ -170,7 +170,7 @@ block content
         let button = document.getElementById("btnSave");
         let buttonDTB = document.getElementById("btnTinhDTB");
         button.hidden = false;
-        buttonDTB.hidden = false;
+        //- buttonDTB.hidden = false;
 
         console.log(result.result)
         data = []
@@ -183,7 +183,7 @@ block content
             result.result[i].DiemTB = 0;
           }
          result.result[i].DiemTB = ((result.result[i]["01"] + result.result[i]["02"] + (result.result[i]["03"] + result.result[i]["04"])*2
-            +  result.result[i]["05"]*3)/9)
+            +  result.result[i]["05"]*3)/9);
 
 
           data.push({

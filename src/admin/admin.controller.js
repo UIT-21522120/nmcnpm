@@ -871,9 +871,24 @@ async function ThemMonHoc(req, res) {
                     alert: "Vui lòng nhập đầy đủ thông tin",
                     redirect: '/admin/ThemMonHoc'
                 });
-
-                    let SQLQuery = `insert into MONHOC (MaMH,TenMH,MoTa,HeSo) values ( '${data.MaMH}',N'${data.TenMH}',N'${data.MoTa}','${data.HeSo}')`;
-                    let result_subject = await adminModel.TruyVan("Admin", SQLQuery);
+                    console.log(data.MaMH);
+                    let SQLQuery
+                    let result_subject
+                    if(data.MaMH =="Hoa10" || data.MaMH == "Hoa11"|| data.MaMH == "Hoa12"|| data.MaMH == "Toan10"|| data.MaMH == "Toan11"   
+                    || data.MaMH == "Toan12" || data.MaMH == "Ly10" || data.MaMH == "Ly11" || data.MaMH == "Ly12" || data.MaMH == "Van10" 
+                    || data.MaMH == "Van11" || data.MaMH == "Van12" || data.MaMH == "Su10" || data.MaMH == "Su11" || data.MaMH == "Su12" 
+                    || data.MaMH == "Dia10" || data.MaMH == "Dia11" || data.MaMH == "Dia12" || data.MaMH == "Sinh10" || data.MaMH == "Sinh11" 
+                    || data.MaMH == "Sinh12" || data.MaMH == "Daoduc10" || data.MaMH == "Daoduc11" || data.MaMH == "Daoduc12" || data.MaMH == "The10" 
+                    || data.MaMH == "The11" || data.MaMH == "The12" )
+                    {
+                    SQLQuery = `insert into MONHOC (MaMH,TenMH,MoTa,HeSo) values ( '${data.MaMH}',N'${data.TenMH}',N'${data.MoTa}','${data.HeSo}')`;
+                    result_subject = await adminModel.TruyVan("Admin", SQLQuery);
+                }
+                   else{
+                    let SQLQuery1;
+                    let result_subject = await adminModel.TruyVan("Admin", SQLQuery1);
+                   }
+                   
                     console.log(result_subject);
                     if (result_subject.statusCode == 200){
                         return res
