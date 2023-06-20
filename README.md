@@ -4,9 +4,7 @@
 
 ## Giới thiệu
 
-Việc quản lý học sinh trên sổ sách tạo ra một gánh nặng đáng kể cho nhân viên nhà trường. Đối với các trường có số lượng học sinh ít và có hạn chế về tài chính, việc quản lý trên sổ sách vẫn có thể thực hiện được. Tuy nhiên, đối với các trường tại các thành phố lớn, có điều kiện tài chính và số lượng học sinh lớn, việc quản lý truyền thống như vậy sẽ mất rất nhiều thời gian và công sức. Mỗi học sinh có rất nhiều thông tin cá nhân, bao gồm cột điểm của các môn học khác nhau và các vấn đề liên quan. Lượng thông tin vô cùng khổng lồ và việc quản lý truyền thống lúc này không còn khả thi với số lượng thông tin lớn như vậy. Ngoài ra, việc quản lý học sinh còn đòi hỏi kiểm kê dữ liệu, thống kê điểm số từng học sinh, từng môn, và từng lớp.
-
-Vì vậy, sự chuyển đổi từ quản lý trực tiếp sang quản lý trực tuyến là hoàn toàn cần thiết.
+Việc quản lý học sinh trên sổ sách tạo ra một gánh nặng đáng kể cho nhân viên nhà trường. Đối với các trường có số lượng học sinh ít và có hạn chế về tài chính, việc quản lý trên sổ sách vẫn có thể thực hiện được. Tuy nhiên, đối với các trường tại các thành phố lớn, có điều kiện tài chính và số lượng học sinh lớn, việc quản lý truyền thống như vậy sẽ mất rất nhiều thời gian và công sức. Mỗi học sinh có rất nhiều thông tin cá nhân, bao gồm cột điểm của các môn học khác nhau và các vấn đề liên quan. Lượng thông tin vô cùng khổng lồ và việc quản lý truyền thống lúc này không còn khả thi với số lượng thông tin lớn như vậy. Ngoài ra, việc quản lý học sinh còn đòi hỏi kiểm kê dữ liệu, thống kê điểm số từng học sinh, từng môn, và từng lớp. Vì vậy, sự chuyển đổi từ quản lý trực tiếp sang quản lý trực tuyến là hoàn toàn cần thiết.
 
 
 ## Tính năng
